@@ -32,7 +32,7 @@ spec:
   - name: build-source-image
     value: true
   - name: prefetch-input
-    value: {"path": ".", "type": "gomod"}
+    value: [{"path": ".", "type": "gomod"}]
   pipelineSpec:
     finally:
     - name: show-sbom
