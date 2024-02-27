@@ -15,6 +15,7 @@ RUN chgrp -R 0 /${HOME} && chmod -R g=u /${HOME}
 
 WORKDIR ${HOME}
 
+LABEL name="certifcate-transparency-server"
 LABEL description="The binary responsible for providing the Certificate Transparency (CT) log server."
 LABEL io.k8s.description="The binary responsible for providing the Certificate Transparency (CT) log server."
 LABEL io.k8s.display-name="CT server container image for Red Hat Trusted Artifact Signer."
