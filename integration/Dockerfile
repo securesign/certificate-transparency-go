@@ -1,6 +1,6 @@
 # This Dockerfile builds a base image for the certificate-transparency-go CloudBuild integration testing.
 # See https://hub.docker.com/_/golang for the set of golang base images.
-FROM golang:1.21.3-bookworm@sha256:20f9ab52a8c3598ef13f86c9bc3b94db400e13df115ecacd8c3dfd0c0f060208 as ct_testbase
+FROM golang:1.22.1-bookworm@sha256:6699d2852712f090399ccd4e8dfd079b4d55376f3ab3aff5b2dc8b7b1c11e27e as ct_testbase
 
 WORKDIR /testbase
 
@@ -9,7 +9,7 @@ ENV GOFLAGS=$GOFLAGS
 
 RUN apt-get update && apt-get -y install build-essential curl docker-compose lsof netcat-openbsd unzip wget xxd
 
-RUN cd /usr/bin && curl -L -O https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && mv jq-linux64 /usr/bin/jq && chmod +x /usr/bin/jq
+RUN cd /usr/bin && curl -L -O https://github.com/jqlang/jq/releases/download/jq-1.7/jq-linux64 && mv jq-linux64 /usr/bin/jq && chmod +x /usr/bin/jq
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.55.1
 RUN mkdir protoc && \
     (cd protoc && \
