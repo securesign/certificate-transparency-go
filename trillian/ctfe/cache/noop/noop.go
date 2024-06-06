@@ -1,4 +1,4 @@
-// Copyright 2017 Google LLC. All Rights Reserved.
+// Copyright 2024 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,15 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package x509util
+// Package noop defines the IssuanceChainCache type, which implements IssuanceChainCache interface with Get and Set operations.
+package noop
 
-import "github.com/google/certificate-transparency-go/x509"
+import "context"
 
-// Fuzz is a go-fuzz (https://github.com/dvyukov/go-fuzz) entrypoint
-// for fuzzing the parsing of X509 certificates.
-func Fuzz(data []byte) int {
-	if _, err := x509.ParseCertificate(data); err == nil {
-		return 1
-	}
-	return 0
+// IssuanceChainCache is a no-op implementation of the IssuanceChainCache interface.
+type IssuanceChainCache struct{}
+
+func (c *IssuanceChainCache) Get(_ context.Context, key []byte) ([]byte, error) {
+	return nil, nil
+}
+
+func (c *IssuanceChainCache) Set(_ context.Context, key []byte, chain []byte) error {
+	return nil
 }
