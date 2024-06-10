@@ -45,8 +45,8 @@ This brings up everything except the CTFE. Now to provision the logs.
 
 ```bash
 # Terminal 2
-cd ${GIT_HOME}/trillian/
-docker exec -i ctfe-db mariadb -pzaphod -Dtest < ./storage/mysql/schema/storage.sql
+docker exec -i ctfe-db mariadb -pzaphod -Dtest < ${GIT_HOME}/trillian/storage/mysql/schema/storage.sql
+docker exec -i ctfe-db mariadb -pzaphod -Dtest < ${GIT_HOME}/certificate-transparency-go/trillian/ctfe/storage/mysql/schema.sql
 ```
 
 The CTFE requires some configuration files. First prepare a directory containing

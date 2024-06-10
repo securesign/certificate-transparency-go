@@ -1,4 +1,4 @@
-FROM golang:1.21.3-bookworm@sha256:20f9ab52a8c3598ef13f86c9bc3b94db400e13df115ecacd8c3dfd0c0f060208 as build
+FROM golang:1.22.3-bookworm@sha256:5c56bd47228dd572d8a82971cf1f946cd8bb1862a8ec6dc9f3d387cc94136976 as build
 
 ARG GOFLAGS=""
 ENV GOFLAGS=$GOFLAGS
@@ -10,9 +10,9 @@ COPY go.sum .
 RUN go mod download
 COPY . .
 
-RUN CGO_ENABLED=0 go build ./trillian/ctfe/ct_server
+RUN go build ./trillian/ctfe/ct_server
 
-FROM gcr.io/distroless/base@sha256:b31a6e02605827e77b7ebb82a0ac9669ec51091edd62c2c076175e05556f4ab9
+FROM gcr.io/distroless/base-debian12@sha256:786007f631d22e8a1a5084c5b177352d9dcac24b1e8c815187750f70b24a9fc6
 
 COPY --from=build /build/ct_server /
 
