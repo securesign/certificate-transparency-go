@@ -23,7 +23,7 @@ spec:
   - name: git-url
     value: '{{source_url}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/rhtas-tenant/certificate-transparency-go/certificate-transparency-go:{{revision}}
+    value: quay.io/securesign/certificate-transparency-go:{{revision}}
   - name: path-context
     value: .
   - name: revision
