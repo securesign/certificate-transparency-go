@@ -5,7 +5,7 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o ct_server -mod=readonly -trimpath ./trillian/ctfe/ct_server
 
 # Install server
-FROM registry.access.redhat.com/ubi9-minimal@sha256:73f7dcacb460dad137a58f24668470a5a2e47378838a0190eef0ab532c6e8998
+FROM registry.access.redhat.com/ubi9-minimal@sha256:f5d2c6a1e0c86e4234ea601552dbabb4ced0e013a1efcbfb439f1f6a7a9275b0
 COPY --from=build-env /ct_server/ct_server /usr/local/bin/ct_server
 RUN chown root:0 /usr/local/bin/ct_server && chmod g+wx /usr/local/bin/ct_server
 
