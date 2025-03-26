@@ -6,14 +6,13 @@ RUN CGO_ENABLED=0 go build -o ct_server -mod=readonly -trimpath ./trillian/ctfe/
 
 # Install server
 FROM registry.access.redhat.com/ubi9-minimal@sha256:4c8830d349732ed8066544e1cbcf878ad64f39aa4364f13cf4a69954b0ccbda5
+
+# Create a non-root user and group with a home directory
+RUN groupadd -r appgroup && \
+    useradd -r -g appgroup -d /home/appuser -m -s /sbin/nologin appuser
+
 COPY --from=build-env /ct_server/ct_server /usr/local/bin/ct_server
-RUN chown root:0 /usr/local/bin/ct_server && chmod g+wx /usr/local/bin/ct_server
-
-# Configure home directory
-ENV HOME=/home
-RUN chgrp -R 0 /${HOME} && chmod -R g=u /${HOME}
-
-WORKDIR ${HOME}
+COPY LICENSE /licenses/license.txt
 
 LABEL name="certifcate-transparency-server"
 LABEL description="The binary responsible for providing the Certificate Transparency (CT) log server."
@@ -22,6 +21,10 @@ LABEL io.k8s.display-name="CT server container image for Red Hat Trusted Artifac
 LABEL io.openshift.tags="CT-server, Red Hat trusted artifact signer."
 LABEL summary="Provides the CT-server binary."
 LABEL com.redhat.component="ct-server"
+
+USER appuser
+
+WORKDIR /home/appuser
 
 # Set the binary as the entrypoint of the container
 ENTRYPOINT ["ct_server"]
