@@ -2,6 +2,8 @@
 
 ## HEAD
 
+* Bump golangci-lint from 1.55.1 to 1.61.0 (developers should update to this version).
+
 ## v1.3.1
 
 * Add AllLogListSignatureURL by @AlexLaroche in https://github.com/google/certificate-transparency-go/pull/1634
