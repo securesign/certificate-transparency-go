@@ -1,4 +1,4 @@
-FROM golang:1.23.4-bookworm@sha256:95db116434e3f21a2a15600ffc7169bf380c6bfd021b154d106fcb346721c277 as builder
+FROM golang:1.24.1-bookworm@sha256:fa1a01d362a7b9df68b021d59a124d28cae6d99ebd1a876e3557c4dd092f1b1d as builder
 
 ARG GOFLAGS=""
 ENV GOFLAGS=$GOFLAGS
