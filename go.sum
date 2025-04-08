@@ -18,6 +18,10 @@ cloud.google.com/go/trace v1.11.5 h1:CALS1loyxJMnRiCwZSpdf8ac7iCsjreMxFD2WGxzzHU
 cloud.google.com/go/trace v1.11.5/go.mod h1:TwblCcqNInriu5/qzaeYEIH7wzUcchSdeY2l5wL3Eec=
 cloud.google.com/go/trace v1.11.3 h1:c+I4YFjxRQjvAhRmSsmjpASUKq88chOX854ied0K/pE=
 cloud.google.com/go/trace v1.11.3/go.mod h1:pt7zCYiDSQjC9Y2oqCsh9jF4GStB/hmjrYLsxRR27q8=
+cloud.google.com/go/monitoring v1.24.0 h1:csSKiCJ+WVRgNkRzzz3BPoGjFhjPY23ZTcaenToJxMM=
+cloud.google.com/go/monitoring v1.24.0/go.mod h1:Bd1PRK5bmQBQNnuGwHBfUamAV1ys9049oEPHnn4pcsc=
+cloud.google.com/go/trace v1.11.5 h1:CALS1loyxJMnRiCwZSpdf8ac7iCsjreMxFD2WGxzzHU=
+cloud.google.com/go/trace v1.11.5/go.mod h1:TwblCcqNInriu5/qzaeYEIH7wzUcchSdeY2l5wL3Eec=
 contrib.go.opencensus.io/exporter/stackdriver v0.13.14 h1:zBakwHardp9Jcb8sQHcHpXy/0+JIb1M8KjigCJzx7+4=
 contrib.go.opencensus.io/exporter/stackdriver v0.13.14/go.mod h1:5pSSGY0Bhuk7waTHuDf4aQ8D2DrhgETRo9fy6k3Xlzc=
 filippo.io/edwards25519 v1.1.0 h1:FNf4tywRC1HmFuKW5xopWpigGjJKiJSV0Cqo0cJWDaA=
