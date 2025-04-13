@@ -7,7 +7,7 @@ toolchain go1.23.7
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.2
 	github.com/fullstorydev/grpcurl v1.9.2
-	github.com/go-sql-driver/mysql v1.8.1
+	github.com/go-sql-driver/mysql v1.9.2
 	github.com/golang/mock v1.6.0
 	github.com/google/go-cmp v0.7.0
 	github.com/google/trillian v1.7.1
