@@ -24,11 +24,11 @@ require (
 	github.com/spf13/pflag v1.0.6
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce
 	github.com/transparency-dev/merkle v0.0.2
-	go.etcd.io/etcd/client/v3 v3.5.20
+	go.etcd.io/etcd/client/v3 v3.5.21
 	go.etcd.io/etcd/etcdctl/v3 v3.5.20
 	go.etcd.io/etcd/v3 v3.5.20
 	golang.org/x/crypto v0.36.0
-	golang.org/x/net v0.37.0
+	golang.org/x/net v0.38.0
 	golang.org/x/time v0.10.0
 	google.golang.org/grpc v1.71.0
 	google.golang.org/protobuf v1.36.6
@@ -107,8 +107,8 @@ require (
 	github.com/urfave/cli v1.22.14 // indirect
 	github.com/xiang90/probing v0.0.0-20221125231312-a49e3df8f510 // indirect
 	go.etcd.io/bbolt v1.3.11 // indirect
-	go.etcd.io/etcd/api/v3 v3.5.20 // indirect
-	go.etcd.io/etcd/client/pkg/v3 v3.5.20 // indirect
+	go.etcd.io/etcd/api/v3 v3.5.21 // indirect
+	go.etcd.io/etcd/client/pkg/v3 v3.5.21 // indirect
 	go.etcd.io/etcd/client/v2 v2.305.20 // indirect
 	go.etcd.io/etcd/etcdutl/v3 v3.5.20 // indirect
 	go.etcd.io/etcd/pkg/v3 v3.5.20 // indirect
