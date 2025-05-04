@@ -46,7 +46,7 @@ require (
 	cloud.google.com/go/trace v1.11.5 // indirect
 	contrib.go.opencensus.io/exporter/stackdriver v0.13.14 // indirect
 	filippo.io/edwards25519 v1.1.0 // indirect
-	github.com/aws/aws-sdk-go v1.51.8 // indirect
+	github.com/aws/aws-sdk-go v1.55.7 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bgentry/speakeasy v0.1.0 // indirect
 	github.com/bufbuild/protocompile v0.10.0 // indirect
