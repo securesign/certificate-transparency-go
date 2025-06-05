@@ -5,7 +5,7 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o ct_server -mod=readonly -trimpath ./trillian/ctfe/ct_server
 
 # Install server
-FROM registry.access.redhat.com/ubi9-minimal@sha256:4c8830d349732ed8066544e1cbcf878ad64f39aa4364f13cf4a69954b0ccbda5
+FROM registry.access.redhat.com/ubi9-minimal@sha256:aca8052836f670988f68139b46ddc6bacded7c40bd49962971ee5e3b1f8bc1f8
 
 # Create a non-root user and group with a home directory
 RUN groupadd -r appgroup && \
