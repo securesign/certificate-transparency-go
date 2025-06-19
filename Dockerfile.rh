@@ -1,11 +1,11 @@
-FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder@sha256:98a0ff138c536eee98704d6909699ad5d0725a20573e2c510a60ef462b45cce0 AS build-env
+FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder@sha256:2e38fae8c9caa7a0e23c54f6d612bd3a4a4fc170514be7eb24f44ea1ff7861c9 AS build-env
 WORKDIR /ct_server
 RUN git config --global --add safe.directory /ct_server
 COPY . .
 RUN CGO_ENABLED=0 go build -o ct_server -mod=readonly -trimpath ./trillian/ctfe/ct_server
 
 # Install server
-FROM registry.access.redhat.com/ubi9-minimal@sha256:9bed53318702feb9b15c79d56d4fc2a6857fdffa335eee7be53421989c7658d1
+FROM registry.access.redhat.com/ubi9-minimal@sha256:f172b3082a3d1bbe789a1057f03883c1113243564f01cd3020e27548b911d3f8
 
 # Create a non-root user and group with a home directory
 RUN groupadd -r appgroup && \
