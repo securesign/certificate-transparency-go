@@ -3,6 +3,7 @@
 ## HEAD
 
 * Bump golangci-lint from 1.55.1 to 1.61.0 (developers should update to this version).
+* [CTFE] Enforce max request body size using `http.MaxBytesHandler`.
 
 ## v1.3.1
 
