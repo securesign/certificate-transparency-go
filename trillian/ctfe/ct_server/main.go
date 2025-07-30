@@ -88,6 +88,7 @@ var (
 	cacheSize               = flag.Int("cache_size", -1, "Size parameter set to 0 makes cache of unlimited size")
 	cacheTTL                = flag.Duration("cache_ttl", -1*time.Second, "Providing 0 TTL turns expiring off")
 	trillianTLSCACertFile   = flag.String("trillian_tls_ca_cert_file", "", "CA certificate file to use for secure connections with Trillian server")
+	maxCertChainSize        = flag.Int64("max_cert_chain_size", 512000, "Maximum size of certificate chain in bytes for add-chain and add-pre-chain endpoints (default: 512000 bytes = 500KB)")
 )
 
 const unknownRemoteUser = "UNKNOWN_REMOTE"
