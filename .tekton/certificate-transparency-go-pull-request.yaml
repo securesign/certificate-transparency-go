@@ -38,6 +38,8 @@ spec:
     value: '[{"path":".","type":"gomod"}]'
   - name: go_unit_test
     value: "true"
+  - name: fips-check
+    value: "true"
   pipelineRef:
     params:
     - name: url
@@ -49,14 +51,10 @@ spec:
     resolver: git
   taskRunSpecs:
   - pipelineTaskName: run-unit-test
-    podTemplate:
-      imagePullSecrets:
-      - name: brew-registry-pull-secret
-    serviceAccountName: build-pipeline-certificate-transparency-go
     stepSpecs:
     - computeResources:
         limits:
-          memory: 5Gi
+          memory: 4Gi
       name: run-tests
   taskRunTemplate:
     serviceAccountName: build-pipeline-certificate-transparency-go
