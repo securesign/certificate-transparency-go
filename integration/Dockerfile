@@ -19,11 +19,11 @@ RUN mkdir protoc && \
     unzip -o ${PROTOC_ZIP} -d /usr/local bin/protoc && \
     unzip -o ${PROTOC_ZIP} -d /usr/local 'include/*' \
     )
-ENV PATH /usr/local/bin:$PATH
+ENV PATH=/usr/local/bin:$PATH
 
 COPY ./integration/test-runner.sh /testbase/
 
-ENV GOPATH /go
-ENV PATH $GOPATH/bin:/testbase/protoc/bin:$PATH
+ENV GOPATH=/go
+ENV PATH=$GOPATH/bin:/testbase/protoc/bin:$PATH
 
-CMD /bin/bash -exc /testbase/test-runner.sh
+CMD ["/bin/bash", "-exc", "/testbase/test-runner.sh"]
