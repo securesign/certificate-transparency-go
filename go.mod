@@ -1,8 +1,8 @@
 module github.com/google/certificate-transparency-go
 
-go 1.23.0
+go 1.24.0
 
-toolchain go1.23.7
+toolchain go1.24.11
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.2
