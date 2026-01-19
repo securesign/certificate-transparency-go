@@ -20,6 +20,7 @@ import (
 	"context"
 	"encoding/gob"
 	"flag"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -38,12 +39,14 @@ import (
 var (
 	sourceLogURI          = flag.String("source_log_uri", "https://ct.googleapis.com/aviator", "CT log base URI to fetch entries from")
 	targetLogURI          = flag.String("target_log_uri", "https://example.com/ct", "CT log base URI to add entries to")
+	targetBearerToken     = flag.String("target_bearer_token", "", "The bearer token for authentication with the target log. Not set if empty. For GCP this is the result of `gcloud auth print-identity-token`")
 	targetTemporalLogCfg  = flag.String("target_temporal_log_cfg", "", "File holding temporal log configuration")
 	batchSize             = flag.Int("batch_size", 1000, "Max number of entries to request at per call to get-entries")
 	numWorkers            = flag.Int("num_workers", 2, "Number of concurrent matchers")
 	parallelFetch         = flag.Int("parallel_fetch", 2, "Number of concurrent GetEntries fetches")
 	parallelSubmit        = flag.Int("parallel_submit", 2, "Number of concurrent add-[pre]-chain requests")
 	startIndex            = flag.Int64("start_index", 0, "Log index to start scanning at")
+	endIndex              = flag.Int64("end_index", 0, "Log index to stop scanning at. If set to 0, will be reassigned to the log's current size.")
 	sctInputFile          = flag.String("sct_file", "", "File to save SCTs & leaf data to")
 	precertsOnly          = flag.Bool("precerts_only", false, "Only match precerts")
 	tlsTimeout            = flag.Duration("tls_timeout", 30*time.Second, "TLS handshake timeout (see http.Transport)")
@@ -179,6 +182,7 @@ func main() {
 			BatchSize:     *batchSize,
 			ParallelFetch: *parallelFetch,
 			StartIndex:    *startIndex,
+			EndIndex:      *endIndex,
 		},
 		Matcher:     scanner.MatchAll{},
 		PrecertOnly: *precertsOnly,
@@ -209,7 +213,11 @@ func main() {
 			klog.Exitf("Failed to create client for destination temporal log: %v", err)
 		}
 	} else {
-		submitLogClient, err = client.New(*targetLogURI, &http.Client{Transport: transport}, jsonclient.Options{UserAgent: "ct-go-preloader/1.0"})
+		jclient := jsonclient.Options{UserAgent: "ct-go-preloader/1.0"}
+		if *targetBearerToken != "" {
+			jclient.Authorization = fmt.Sprintf("Bearer %s", *targetBearerToken)
+		}
+		submitLogClient, err = client.New(*targetLogURI, &http.Client{Transport: transport}, jclient)
 		if err != nil {
 			klog.Exitf("Failed to create client for destination log: %v", err)
 		}

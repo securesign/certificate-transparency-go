@@ -56,6 +56,8 @@ const (
 	cacheControlHeader = "Cache-Control"
 	// Value for Cache-Control header when response contains immutable data, i.e. entries or proofs. Allows the response to be cached for 1 day.
 	cacheControlImmutable = "public, max-age=86400"
+	// Value for Cache-Control header when response contains immutable but partial data, i.e. fewer entries than requested. Allows the response to be cached for 1 minute.
+	cacheControlPartial = "public, max-age=60"
 	// HTTP content type header
 	contentTypeHeader string = "Content-Type"
 	// MIME content type for JSON
@@ -478,6 +480,11 @@ func addChainInternal(ctx context.Context, li *logInfo, w http.ResponseWriter, r
 	for _, cert := range chain {
 		li.RequestLog.AddCertToChain(ctx, cert)
 	}
+
+	if rateLimitNonFreshSubmission(li, chain[0]) {
+		return http.StatusTooManyRequests, fmt.Errorf("rate-limited submission considered to be non-fresh")
+	}
+
 	// Get the current time in the form used throughout RFC6962, namely milliseconds since Unix
 	// epoch, and use this throughout.
 	timeMillis := uint64(li.TimeSource.Now().UnixNano() / millisPerNano)
@@ -805,7 +812,11 @@ func getEntries(ctx context.Context, li *logInfo, w http.ResponseWriter, r *http
 		return http.StatusInternalServerError, fmt.Errorf("failed to process leaves returned from backend: %s", err)
 	}
 
-	w.Header().Set(cacheControlHeader, cacheControlImmutable)
+	if len(rsp.Leaves) < int(count) {
+		w.Header().Set(cacheControlHeader, cacheControlPartial)
+	} else {
+		w.Header().Set(cacheControlHeader, cacheControlImmutable)
+	}
 	w.Header().Set(contentTypeHeader, contentTypeJSON)
 	jsonData, err := json.Marshal(&jsonRsp)
 	if err != nil {
@@ -964,6 +975,16 @@ func verifyAddChain(li *logInfo, req ct.AddChainRequest, expectingPrecert bool) 
 	}
 
 	return validPath, nil
+}
+
+func rateLimitNonFreshSubmission(li *logInfo, leafCert *x509.Certificate) bool {
+	if li.instanceOpts.NonFreshSubmissionLimiter != nil {
+		if li.TimeSource.Now().Add(-li.instanceOpts.FreshSubmissionMaxAge).After(leafCert.NotBefore) {
+			return !li.instanceOpts.NonFreshSubmissionLimiter.Allow()
+		}
+	}
+
+	return false
 }
 
 // marshalAndWriteAddChainResponse is used by add-chain and add-pre-chain to create and write
