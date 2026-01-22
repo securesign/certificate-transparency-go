@@ -8,13 +8,13 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "main"
+      == "release-1.2"
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: certificate-transparency-go
-    appstudio.openshift.io/component: certificate-transparency-go
+    appstudio.openshift.io/application: tas-components-v1-2
+    appstudio.openshift.io/component: certificate-transparency-go-v1-2
     pipelines.appstudio.openshift.io/type: build
-  name: certificate-transparency-go-on-pull-request
+  name: certificate-transparency-go-v1-2-on-pull-request
   namespace: rhtas-tenant
 spec:
   params:
@@ -52,9 +52,9 @@ spec:
     podTemplate:
       imagePullSecrets:
       - name: brew-registry-pull-secret
-    serviceAccountName: appstudio-pipeline
+    serviceAccountName: build-pipeline-certificate-transparency-go-v1-2
   taskRunTemplate:
-    serviceAccountName: build-pipeline-certificate-transparency-go
+    serviceAccountName: build-pipeline-certificate-transparency-go-v1-2
   workspaces:
   - name: git-auth
     secret:
