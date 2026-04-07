@@ -42,13 +42,17 @@ var (
 )
 
 func parsePolicyType() submission.CTPolicyType {
-	if *policyType == "chrome" {
+
+
+	switch *policyType {
+	case "chrome":
 		return submission.ChromeCTPolicy
-	} else if *policyType == "apple" {
+	case "apple":
 		return submission.AppleCTPolicy
+	default:
+		klog.Fatalf("flag policyType does not support value %q", *policyType)
+		return submission.ChromeCTPolicy
 	}
-	klog.Fatalf("flag policyType does not support value %q", *policyType)
-	return submission.ChromeCTPolicy
 }
 
 func main() {
