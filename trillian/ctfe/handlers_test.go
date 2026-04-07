@@ -344,10 +344,10 @@ func TestGetRoots(t *testing.T) {
 	if got := len(certs); got != 2 {
 		t.Fatalf("len(%q)=%d; want 2", certs, got)
 	}
-	if got, want := certs[0], strings.ReplaceAll(caCertB64, "\n", "", -1); got != want {
+	if got, want := certs[0], strings.ReplaceAll(caCertB64, "\n", ""); got != want {
 		t.Errorf("certs[0]=%s; want %s", got, want)
 	}
-	if got, want := certs[1], strings.ReplaceAll(intermediateCertB64, "\n", "", -1); got != want {
+	if got, want := certs[1], strings.ReplaceAll(intermediateCertB64, "\n", ""); got != want {
 		t.Errorf("certs[1]=%s; want %s", got, want)
 	}
 }
