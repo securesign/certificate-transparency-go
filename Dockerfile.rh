@@ -1,4 +1,4 @@
-FROM registry.redhat.io/ubi9/go-toolset:9.7-1774618347@sha256:a05a1c82b3ce23864a831084ff21a907128f4707ca3f455ba99717c0c2c4d6c1 AS build-env
+FROM registry.redhat.io/ubi9/go-toolset:9.7-1776763740@sha256:21c32020867e17a72931dd04ec72e16193ed1549352cfb9dc72c0a6e35d4fa7b AS build-env
 
 ENV GOEXPERIMENT=strictfipsruntime
 ENV CGO_ENABLED=1
@@ -9,7 +9,7 @@ COPY . .
 RUN go build -o ct_server -mod=readonly -trimpath ./trillian/ctfe/ct_server
 
 # Install server
-FROM registry.access.redhat.com/ubi9/ubi-minimal@sha256:f5346fbb587b72b5376e66272935d22c62af78be2e8ea1dcf3e9e46865a9a2ee
+FROM registry.access.redhat.com/ubi9/ubi-minimal@sha256:8e5f23f039511fbb19fcd95b7caa0bbfbf1780ed14d300c3539df6f1040e285d
 
 # Create a non-root user and group with a home directory
 RUN groupadd -r appgroup && \
