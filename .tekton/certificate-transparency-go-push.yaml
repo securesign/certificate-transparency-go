@@ -7,12 +7,11 @@ metadata:
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "main"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "release-1.4"
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: tas-components
-    appstudio.openshift.io/component: certificate-transparency-go
+    appstudio.openshift.io/application: tas-components-v1-4
+    appstudio.openshift.io/component: certificate-transparency-go-v1-4
     pipelines.appstudio.openshift.io/type: build
   name: certificate-transparency-go-on-push
   namespace: rhtas-tenant
@@ -57,7 +56,7 @@ spec:
           memory: 4Gi
       name: run-tests
   taskRunTemplate:
-    serviceAccountName: build-pipeline-certificate-transparency-go
+    serviceAccountName: build-pipeline-certificate-transparency-go-v1-4
   workspaces:
   - name: git-auth
     secret:
