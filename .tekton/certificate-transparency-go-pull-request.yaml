@@ -13,7 +13,7 @@ metadata:
     appstudio.openshift.io/application: tas-components-v1-4
     appstudio.openshift.io/component: certificate-transparency-go-v1-4
     pipelines.appstudio.openshift.io/type: build
-  name: certificate-transparency-v1-4-go-on-pull-request
+  name: certificate-transparency-go-v1-4-on-pull-request
   namespace: rhtas-tenant
 spec:
   params:
