@@ -1,6 +1,8 @@
 module github.com/google/certificate-transparency-go
 
-go 1.25.0
+go 1.26.0
+
+godebug fips140=auto
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.2
