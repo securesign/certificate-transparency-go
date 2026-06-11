@@ -1,12 +1,12 @@
-FROM registry.redhat.io/ubi9/go-toolset:9.7-1774618347@sha256:a05a1c82b3ce23864a831084ff21a907128f4707ca3f455ba99717c0c2c4d6c1 AS build-env
+FROM registry.redhat.io/ubi9/go-toolset:9.8@sha256:355b23fe885cf565c9313a7e98db742df0aec21456244e808942c56489594251 AS build-env
 
-ENV GOEXPERIMENT=strictfipsruntime
-ENV CGO_ENABLED=1
+ENV CGO_ENABLED=0
+ENV GOFIPS140=v1.0.0
 
 WORKDIR /ct_server
 RUN git config --global --add safe.directory /ct_server
 COPY . .
-RUN go build -o ct_server -mod=readonly -trimpath ./trillian/ctfe/ct_server
+RUN go build -o ct_server -tags=no_openssl -mod=readonly -trimpath ./trillian/ctfe/ct_server
 
 # Install server
 FROM registry.access.redhat.com/ubi9/ubi-minimal@sha256:f5346fbb587b72b5376e66272935d22c62af78be2e8ea1dcf3e9e46865a9a2ee

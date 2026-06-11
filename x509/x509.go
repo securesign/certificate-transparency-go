@@ -54,6 +54,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/ed25519"
 	"crypto/elliptic"
+	"crypto/fips140"
 	"crypto/rsa"
 	_ "crypto/sha1"
 	_ "crypto/sha256"
@@ -1074,6 +1075,15 @@ func checkSignature(algo SignatureAlgorithm, signed, signature []byte, publicKey
 	case crypto.MD5:
 		return InsecureAlgorithmError(algo)
 	default:
+		// RHTAS FIPS - DO NOT REMOVE
+		// ========================================
+		// SHA-1 is not approved for digital signatures under FIPS 140-3.
+		// Reject certificates signed with SHA-1 based algorithms when
+		// FIPS mode is enabled.
+		if fips140.Enabled() && hashType == crypto.SHA1 {
+			return InsecureAlgorithmError(algo)
+		}
+		// ========================================
 		if !hashType.Available() {
 			return ErrUnsupportedAlgorithm
 		}
@@ -1093,6 +1103,14 @@ func checkSignature(algo SignatureAlgorithm, signed, signature []byte, publicKey
 			return rsa.VerifyPKCS1v15(pub, hashType, signed, signature)
 		}
 	case *dsa.PublicKey:
+		// RHTAS FIPS - DO NOT REMOVE
+		// ========================================
+		// DSA is not approved under FIPS 140-3. Reject certificates
+		// signed with DSA when FIPS mode is enabled.
+		if fips140.Enabled() {
+			return errors.New("x509: DSA signature verification is not supported in FIPS 140-3 mode")
+		}
+		// ========================================
 		if pubKeyAlgo != DSA {
 			return signaturePublicKeyAlgoMismatchError(pubKeyAlgo, pub)
 		}
@@ -1132,6 +1150,14 @@ func checkSignature(algo SignatureAlgorithm, signed, signature []byte, publicKey
 		}
 		return
 	case ed25519.PublicKey:
+		// RHTAS FIPS - DO NOT REMOVE
+		// ========================================
+		// Ed25519 uses Curve25519 which is not a NIST-approved curve
+		// and is not permitted under FIPS 140-3.
+		if fips140.Enabled() {
+			return errors.New("x509: Ed25519 signature verification is not supported in FIPS 140-3 mode")
+		}
+		// ========================================
 		if pubKeyAlgo != Ed25519 {
 			return signaturePublicKeyAlgoMismatchError(pubKeyAlgo, pub)
 		}
