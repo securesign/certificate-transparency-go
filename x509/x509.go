@@ -1150,14 +1150,6 @@ func checkSignature(algo SignatureAlgorithm, signed, signature []byte, publicKey
 		}
 		return
 	case ed25519.PublicKey:
-		// RHTAS FIPS - DO NOT REMOVE
-		// ========================================
-		// Ed25519 uses Curve25519 which is not a NIST-approved curve
-		// and is not permitted under FIPS 140-3.
-		if fips140.Enabled() {
-			return errors.New("x509: Ed25519 signature verification is not supported in FIPS 140-3 mode")
-		}
-		// ========================================
 		if pubKeyAlgo != Ed25519 {
 			return signaturePublicKeyAlgoMismatchError(pubKeyAlgo, pub)
 		}
