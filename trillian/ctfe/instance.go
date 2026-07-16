@@ -19,7 +19,6 @@ import (
 	"crypto"
 	"crypto/ecdsa"
 	"crypto/ed25519"
-	"crypto/fips140"
 	"crypto/rsa"
 	"errors"
 	"fmt"
@@ -154,15 +153,6 @@ func setUpLogInfo(ctx context.Context, opts InstanceOptions) (*logInfo, error) {
 		if signer, err = keys.NewSigner(ctx, vCfg.PrivKey); err != nil {
 			return nil, fmt.Errorf("failed to load private key: %v", err)
 		}
-
-		// RHTAS FIPS - DO NOT REMOVE
-		// ========================================
-		// Ed25519 uses Curve25519 which is not a NIST-approved curve
-		// and is not permitted under FIPS 140-3.
-		if _, ok := signer.Public().(ed25519.PublicKey); ok && fips140.Enabled() {
-			return nil, errors.New("Ed25519 keys are not supported in FIPS 140-3 mode")
-		}
-		// ========================================
 
 		// If a public key has been configured for a log, check that it is consistent with the private key.
 		if vCfg.PubKey != nil {
