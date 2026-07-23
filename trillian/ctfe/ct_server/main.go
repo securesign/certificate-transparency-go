@@ -346,6 +346,7 @@ func main() {
 	}
 
 	shutdownWG := new(sync.WaitGroup)
+	shutdownWG.Add(1)
 	go awaitSignal(func() {
 		defer shutdownWG.Done()
 		// Allow 60s for any pending requests to finish then terminate any stragglers
