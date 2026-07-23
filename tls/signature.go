@@ -18,6 +18,7 @@ import (
 	"crypto"
 	"crypto/dsa" //nolint:staticcheck
 	"crypto/ecdsa"
+	"crypto/fips140"
 	_ "crypto/md5" // For registration side-effect
 	"crypto/rand"
 	"crypto/rsa"
@@ -40,8 +41,14 @@ func generateHash(algo HashAlgorithm, data []byte) ([]byte, crypto.Hash, error) 
 	var hashType crypto.Hash
 	switch algo {
 	case MD5:
+		if fips140.Enabled() {
+			return nil, hashType, fmt.Errorf("MD5 is not permitted in FIPS 140-3 mode")
+		}
 		hashType = crypto.MD5
 	case SHA1:
+		if fips140.Enabled() {
+			return nil, hashType, fmt.Errorf("SHA-1 is not permitted in FIPS 140-3 mode")
+		}
 		hashType = crypto.SHA1
 	case SHA224:
 		hashType = crypto.SHA224

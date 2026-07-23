@@ -513,10 +513,10 @@ func TestLogStatesActive(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			gotState, gotFState := test.in.Active()
 			if gotState != test.wantState {
-				t.Errorf("Log-state from Active() = %q, want %q", gotState, test.wantState)
+				t.Errorf("Log-state from Active() = %v, want %v", gotState, test.wantState)
 			}
 			if gotFState != test.wantFState {
-				t.Errorf("ReadOnly Log-state from Active() = %q, want %q", gotFState, test.wantFState)
+				t.Errorf("ReadOnly Log-state from Active() = %v, want %v", gotFState, test.wantFState)
 			}
 		})
 	}
