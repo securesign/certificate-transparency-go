@@ -401,7 +401,7 @@ func parseField(v reflect.Value, data []byte, initOffset int, info *fieldInfo) (
 				if !ok {
 					return offset, structuralError{fieldInfo.name, "selector not seen: " + fieldInfo.selector}
 				}
-				if structType.Field(i).Type.Kind() != reflect.Ptr {
+				if structType.Field(i).Type.Kind() != reflect.Pointer {
 					return offset, structuralError{fieldInfo.name, "choice field not a pointer type"}
 				}
 				// Is this the first mention of the selector field name?  If so, remember it.
@@ -598,7 +598,7 @@ func marshalField(out *bytes.Buffer, v reflect.Value, info *fieldInfo) error {
 				if !ok {
 					return structuralError{fieldInfo.name, "selector not seen: " + fieldInfo.selector}
 				}
-				if structType.Field(i).Type.Kind() != reflect.Ptr {
+				if structType.Field(i).Type.Kind() != reflect.Pointer {
 					return structuralError{fieldInfo.name, "choice field not a pointer type"}
 				}
 				// Is this the first mention of the selector field name? If so, remember it.
