@@ -150,7 +150,7 @@ func PEM2PrivKey(s string) crypto.PrivateKey {
 		return *rsaPrivKey
 	}
 	if pkcs8Key, err := x509.ParsePKCS8PrivateKey(p.Bytes); err == nil {
-		if reflect.TypeOf(pkcs8Key).Kind() == reflect.Ptr {
+		if reflect.TypeOf(pkcs8Key).Kind() == reflect.Pointer {
 			pkcs8Key = reflect.ValueOf(pkcs8Key).Elem().Interface()
 		}
 		return pkcs8Key
