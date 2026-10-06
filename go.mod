@@ -19,9 +19,9 @@ require (
 	github.com/spf13/pflag v1.0.10
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce
 	github.com/transparency-dev/merkle v0.0.2
-	go.etcd.io/etcd/client/v3 v3.7.0
-	go.etcd.io/etcd/etcdctl/v3 v3.6.12
-	go.etcd.io/etcd/v3 v3.6.12
+	go.etcd.io/etcd/client/v3 v3.7.1
+	go.etcd.io/etcd/etcdctl/v3 v3.6.14
+	go.etcd.io/etcd/v3 v3.6.14
 	golang.org/x/crypto v0.54.0
 	golang.org/x/time v0.15.0
 	google.golang.org/grpc v1.82.1
@@ -121,12 +121,12 @@ require (
 	github.com/tmc/grpc-websocket-proxy v0.0.0-20220101234140-673ab2c3ae75 // indirect
 	github.com/xiang90/probing v0.0.0-20221125231312-a49e3df8f510 // indirect
 	go.etcd.io/bbolt v1.4.3 // indirect
-	go.etcd.io/etcd/api/v3 v3.7.0 // indirect
-	go.etcd.io/etcd/client/pkg/v3 v3.7.0 // indirect
-	go.etcd.io/etcd/etcdutl/v3 v3.6.12 // indirect
-	go.etcd.io/etcd/pkg/v3 v3.6.12 // indirect
-	go.etcd.io/etcd/server/v3 v3.6.12 // indirect
-	go.etcd.io/etcd/tests/v3 v3.6.12 // indirect
+	go.etcd.io/etcd/api/v3 v3.7.1 // indirect
+	go.etcd.io/etcd/client/pkg/v3 v3.7.1 // indirect
+	go.etcd.io/etcd/etcdutl/v3 v3.6.14 // indirect
+	go.etcd.io/etcd/pkg/v3 v3.6.14 // indirect
+	go.etcd.io/etcd/server/v3 v3.6.14 // indirect
+	go.etcd.io/etcd/tests/v3 v3.6.14 // indirect
 	go.etcd.io/gofail v0.2.0 // indirect
 	go.etcd.io/raft/v3 v3.6.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
