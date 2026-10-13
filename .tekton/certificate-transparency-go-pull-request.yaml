@@ -8,18 +8,18 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "main"
+      == "release-1.5"
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: tas-components
-    appstudio.openshift.io/component: certificate-transparency-go
+    appstudio.openshift.io/application: tas-components-v1-5
+    appstudio.openshift.io/component: certificate-transparency-go-v1-5
     pipelines.appstudio.openshift.io/type: build
-  name: certificate-transparency-go-on-pull-request
+  name: certificate-transparency-go-v1-5-on-pull-request
   namespace: rhtas-tenant
 spec:
   params:
   - name: release-version
-    value: 1.5.0
+    value: 1.5.1
   - name: dockerfile
     value: Dockerfile.rh
   - name: git-url
@@ -59,7 +59,7 @@ spec:
           memory: 4Gi
       name: run-tests
   taskRunTemplate:
-    serviceAccountName: build-pipeline-certificate-transparency-go
+    serviceAccountName: build-pipeline-certificate-transparency-go-v1-5
   workspaces:
   - name: git-auth
     secret:
