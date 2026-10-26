@@ -308,15 +308,7 @@ func main() {
 		go func() {
 			mux := http.NewServeMux()
 			mux.Handle("/metrics", promhttp.Handler())
-			metricsServer := http.Server{
-				Addr:              metricsAt,
-				Handler:           mux,
-				MaxHeaderBytes:    128 * 1024,
-				ReadHeaderTimeout: 10 * time.Second,
-				ReadTimeout:       2 * time.Minute,
-				WriteTimeout:      2 * time.Minute,
-				IdleTimeout:       2 * time.Minute,
-			}
+			metricsServer := http.Server{Addr: metricsAt, Handler: mux, MaxHeaderBytes: 128 * 1024}
 			err := metricsServer.ListenAndServe()
 			klog.Warningf("Metrics server exited: %v", err)
 		}()
@@ -345,26 +337,9 @@ func main() {
 			Certificates: []tls.Certificate{cert},
 			MinVersion:   tls.VersionTLS12,
 		}
-		srv = http.Server{
-			Addr:              *httpEndpoint,
-			Handler:           handler,
-			TLSConfig:         tlsConfig,
-			MaxHeaderBytes:    128 * 1024,
-			ReadHeaderTimeout: 10 * time.Second,
-			ReadTimeout:       2 * time.Minute,
-			WriteTimeout:      2 * time.Minute,
-			IdleTimeout:       2 * time.Minute,
-		}
+		srv = http.Server{Addr: *httpEndpoint, Handler: handler, TLSConfig: tlsConfig, MaxHeaderBytes: 128 * 1024}
 	} else {
-		srv = http.Server{
-			Addr:              *httpEndpoint,
-			Handler:           handler,
-			MaxHeaderBytes:    128 * 1024,
-			ReadHeaderTimeout: 10 * time.Second,
-			ReadTimeout:       2 * time.Minute,
-			WriteTimeout:      2 * time.Minute,
-			IdleTimeout:       2 * time.Minute,
-		}
+		srv = http.Server{Addr: *httpEndpoint, Handler: handler, MaxHeaderBytes: 128 * 1024}
 	}
 	if *httpIdleTimeout > 0 {
 		srv.IdleTimeout = *httpIdleTimeout

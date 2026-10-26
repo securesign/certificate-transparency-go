@@ -1,0 +1,36 @@
+FROM registry.redhat.io/ubi9/go-toolset:9.8-1792592174@sha256:d4d25f236c2b3cd27eb407e3b3478bef0b75d644ee6d11772217f537be926b11 AS build-env
+
+ENV CGO_ENABLED=1
+ENV GOFIPS140=v1.0.0
+
+USER root
+WORKDIR /ct_server
+RUN git config --global --add safe.directory /ct_server
+COPY . .
+RUN go mod edit -godebug=fips140=auto
+RUN go build -o ct_server -tags=pkcs11,no_openssl -trimpath ./trillian/ctfe/ct_server
+
+# Install server
+FROM registry.access.redhat.com/ubi9/ubi-minimal@sha256:c2fcb1793e00a434470271be7f46eadc2462b39f8370e6a81c861c72fb8d38db
+
+# Create a non-root user and group with a home directory
+RUN groupadd -r appgroup && \
+    useradd -r -g appgroup -d /home/appuser -m -s /sbin/nologin appuser
+
+COPY --from=build-env /ct_server/ct_server /usr/local/bin/ct_server
+COPY LICENSE /licenses/license.txt
+
+LABEL name="rhtas/certificate-transparency-rhel9"
+LABEL description="The binary responsible for providing the Certificate Transparency (CT) log server."
+LABEL io.k8s.description="The binary responsible for providing the Certificate Transparency (CT) log server."
+LABEL io.k8s.display-name="CT server container image for Red Hat Trusted Artifact Signer."
+LABEL io.openshift.tags="CT-server, Red Hat trusted artifact signer."
+LABEL summary="Provides the CT-server binary."
+LABEL com.redhat.component="ct-server"
+
+USER appuser
+
+WORKDIR /home/appuser
+
+# Set the binary as the entrypoint of the container
+ENTRYPOINT ["ct_server"]

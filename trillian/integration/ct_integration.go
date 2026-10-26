@@ -986,7 +986,7 @@ func setTreeState(ctx context.Context, adminServer string, logID int64, state tr
 		UpdateMask: treeStateMask,
 	}
 
-	conn, err := grpc.Dial(adminServer, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient(adminServer, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		return err
 	}
