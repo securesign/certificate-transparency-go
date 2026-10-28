@@ -10,12 +10,14 @@ on:
       - '.tekton/**'
       - '**/*.md'
       - 'LICENSE'
+      - 'renovate.json'
   pull_request:
     paths-ignore:
       - 'Dockerfile.rh'
       - '.tekton/**'
       - '**/*.md'
       - 'LICENSE'
+      - 'renovate.json'
 
 permissions:
   contents: read

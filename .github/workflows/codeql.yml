@@ -21,12 +21,14 @@ on:
       - '.tekton/**'
       - '**/*.md'
       - 'LICENSE'
+      - 'renovate.json'
   pull_request:
     paths-ignore:
       - 'Dockerfile.rh'
       - '.tekton/**'
       - '**/*.md'
       - 'LICENSE'
+      - 'renovate.json'
   schedule:
     - cron: '24 17 * * 1'
 
