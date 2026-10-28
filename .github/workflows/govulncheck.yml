@@ -3,10 +3,21 @@ name: govulncheck
 on:
   push:
     branches:
-      - master
+      - main
+      - 'release-*'
+    paths-ignore:
+      - 'Dockerfile.rh'
+      - '.tekton/**'
+      - '**/*.md'
+      - 'LICENSE'
+      - 'renovate.json'
   pull_request:
-    branches:
-      - master
+    paths-ignore:
+      - 'Dockerfile.rh'
+      - '.tekton/**'
+      - '**/*.md'
+      - 'LICENSE'
+      - 'renovate.json'
 
 permissions:
   contents: read

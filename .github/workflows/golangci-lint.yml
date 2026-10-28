@@ -2,7 +2,20 @@ name: golangci-lint
 
 on:
   push:
+    branches:
+      - main
+      - 'release-*'
+    paths-ignore:
+      - 'Dockerfile.rh'
+      - '.tekton/**'
+      - '**/*.md'
+      - 'LICENSE'
   pull_request:
+    paths-ignore:
+      - 'Dockerfile.rh'
+      - '.tekton/**'
+      - '**/*.md'
+      - 'LICENSE'
 
 permissions:
   contents: read

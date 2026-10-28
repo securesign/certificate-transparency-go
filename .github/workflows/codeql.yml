@@ -13,10 +13,22 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - main
+      - 'release-*'
+    paths-ignore:
+      - 'Dockerfile.rh'
+      - '.tekton/**'
+      - '**/*.md'
+      - 'LICENSE'
+      - 'renovate.json'
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ "master" ]
+    paths-ignore:
+      - 'Dockerfile.rh'
+      - '.tekton/**'
+      - '**/*.md'
+      - 'LICENSE'
+      - 'renovate.json'
   schedule:
     - cron: '24 17 * * 1'
 
