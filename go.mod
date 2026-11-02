@@ -29,7 +29,10 @@ require (
 	k8s.io/klog/v2 v2.140.0
 )
 
-require gopkg.in/yaml.v3 v3.0.1 // indirect
+require (
+	github.com/klauspost/compress v1.20.2 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
+)
 
 require (
 	bitbucket.org/creachadair/shell v0.0.9 // indirect
