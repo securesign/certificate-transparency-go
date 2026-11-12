@@ -305,10 +305,10 @@ go.etcd.io/etcd/etcdctl/v3 v3.6.12 h1:76ZC8YRa2DKLIjrDOKcQxC9+Tptlw2ZB3ZU52kiJjf
 go.etcd.io/etcd/etcdctl/v3 v3.6.12/go.mod h1:umvLlTUPlOAXGXtnH7HnOOIxKv4VtSn3giKIANnPZos=
 go.etcd.io/etcd/etcdutl/v3 v3.6.12 h1:LvTFNBzRYO8m9MlRIeYKi6MEAADMOkffAfc0B7nqEYE=
 go.etcd.io/etcd/etcdutl/v3 v3.6.12/go.mod h1:ZhxWJgE0yEslHH8XVKY1dzB8uZpkUyACmfOGJ56Va7I=
-go.etcd.io/etcd/pkg/v3 v3.6.12 h1:rewjbWPC/H5GHK0yxPbU0lzdFdQR9RlpZL7XmLYm2BE=
-go.etcd.io/etcd/pkg/v3 v3.6.12/go.mod h1:qDFIetmpC8TTZfkZkDzpNrXtVqVsyYumRWNPFXFhcpQ=
-go.etcd.io/etcd/server/v3 v3.6.12 h1:PAcIHCcTjPM1sbePiu7fCzNKQvOBFEaGnu2JFhgaGJQ=
-go.etcd.io/etcd/server/v3 v3.6.12/go.mod h1:iiREo2DGRVjtiAjQeA3LQyYCk6YDFo3uS30/vImHdtk=
+go.etcd.io/etcd/pkg/v3 v3.6.14 h1:MAgY3G8aKMcjBIRay/4JjvCceuRAiEERrxTzkMtBlaA=
+go.etcd.io/etcd/pkg/v3 v3.6.14/go.mod h1:grZHgzt+JCM8hnwSFrEAGxcl/VXksW0dRXfU0R2RmF8=
+go.etcd.io/etcd/server/v3 v3.6.14 h1:LfN38zdvhpYnmyHG6shLWkfmMukkoyM19KUEZx1ywpM=
+go.etcd.io/etcd/server/v3 v3.6.14/go.mod h1:yj1SNtvmNLLl7JUQY3vpaUBm24qAzTVixJn/1OKG6i4=
 go.etcd.io/etcd/tests/v3 v3.6.12 h1:4wIhw0O/X5iv+c0wesshrVytfSxxqKCd5RGIuzLbF88=
 go.etcd.io/etcd/tests/v3 v3.6.12/go.mod h1:bCdQ46Cw+OhSpVQGRkJjefnah3NeEmUYmd7EeI1+FOc=
 go.etcd.io/etcd/v3 v3.6.12 h1:AazMBfwml1oL6UK51hOWo+EW8yab7Kfy8B6F5mVsr0A=
