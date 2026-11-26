@@ -5,25 +5,25 @@ go 1.26.4
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.2
 	github.com/fullstorydev/grpcurl v1.9.4
-	github.com/go-sql-driver/mysql v1.10.1
+	github.com/go-sql-driver/mysql v1.10.2
 	github.com/golang/mock v1.7.0-rc.1
 	github.com/google/go-cmp v0.7.0
 	github.com/google/trillian v1.8.0
 	github.com/gorilla/mux v1.8.1
 	github.com/hashicorp/golang-lru/v2 v2.0.7
-	github.com/jackc/pgx/v5 v5.12.0
+	github.com/jackc/pgx/v5 v5.13.0
 	github.com/kylelemons/godebug v1.1.0
-	github.com/mattn/go-sqlite3 v1.14.52
+	github.com/mattn/go-sqlite3 v1.14.53
 	github.com/prometheus/client_golang v1.25.0
 	github.com/rs/cors v1.11.1
-	github.com/sergi/go-diff v1.4.0
+	github.com/sergi/go-diff v1.4.5
 	github.com/spf13/cobra v1.10.2
-	github.com/spf13/pflag v1.0.10
+	github.com/spf13/pflag v1.1.0
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce
 	github.com/transparency-dev/merkle v0.0.2
-	go.etcd.io/etcd/client/v3 v3.7.3
-	go.etcd.io/etcd/etcdctl/v3 v3.7.3
-	go.etcd.io/etcd/server/v3 v3.7.3
+	go.etcd.io/etcd/client/v3 v3.7.4
+	go.etcd.io/etcd/etcdctl/v3 v3.7.4
+	go.etcd.io/etcd/server/v3 v3.7.4
 	golang.org/x/crypto v0.58.0
 	golang.org/x/time v0.16.0
 	google.golang.org/grpc v1.85.0
@@ -94,9 +94,9 @@ require (
 	github.com/tmc/grpc-websocket-proxy v0.0.0-20220101234140-673ab2c3ae75 // indirect
 	github.com/xiang90/probing v0.0.0-20221125231312-a49e3df8f510 // indirect
 	go.etcd.io/bbolt v1.5.0 // indirect
-	go.etcd.io/etcd/api/v3 v3.7.3 // indirect
-	go.etcd.io/etcd/client/pkg/v3 v3.7.3 // indirect
-	go.etcd.io/etcd/pkg/v3 v3.7.3 // indirect
+	go.etcd.io/etcd/api/v3 v3.7.4 // indirect
+	go.etcd.io/etcd/client/pkg/v3 v3.7.4 // indirect
+	go.etcd.io/etcd/pkg/v3 v3.7.4 // indirect
 	go.etcd.io/raft/v3 v3.7.0 // indirect
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.72.0 // indirect
