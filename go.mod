@@ -4,28 +4,28 @@ go 1.26.0
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.2
-	github.com/fullstorydev/grpcurl v1.9.3
-	github.com/go-sql-driver/mysql v1.10.0
+	github.com/fullstorydev/grpcurl v1.9.4
+	github.com/go-sql-driver/mysql v1.10.2
 	github.com/golang/mock v1.7.0-rc.1
 	github.com/google/go-cmp v0.7.0
-	github.com/google/trillian v1.7.4-0.20260608093944-c8c9830b66b0
+	github.com/google/trillian v1.8.0
 	github.com/hashicorp/golang-lru/v2 v2.0.7
-	github.com/jackc/pgx/v5 v5.10.0
+	github.com/jackc/pgx/v5 v5.13.0
 	github.com/kylelemons/godebug v1.1.0
-	github.com/prometheus/client_golang v1.24.0
+	github.com/prometheus/client_golang v1.25.0
 	github.com/rs/cors v1.11.1
-	github.com/sergi/go-diff v1.4.0
+	github.com/sergi/go-diff v1.4.5
 	github.com/spf13/cobra v1.10.2
-	github.com/spf13/pflag v1.0.10
+	github.com/spf13/pflag v1.1.0
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce
 	github.com/transparency-dev/merkle v0.0.2
-	go.etcd.io/etcd/client/v3 v3.7.1
-	go.etcd.io/etcd/etcdctl/v3 v3.6.14
-	go.etcd.io/etcd/v3 v3.6.14
+	go.etcd.io/etcd/client/v3 v3.7.4
+	go.etcd.io/etcd/etcdctl/v3 v3.7.4
+	go.etcd.io/etcd/v3 v3.7.4
 	golang.org/x/crypto v0.59.0
-	golang.org/x/time v0.15.0
-	google.golang.org/grpc v1.83.2
-	google.golang.org/protobuf v1.36.11
+	golang.org/x/time v0.16.0
+	google.golang.org/grpc v1.85.0
+	google.golang.org/protobuf v1.36.12
 	k8s.io/klog/v2 v2.140.0
 )
 
